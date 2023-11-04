@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta CEP</title>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cep.html">Consulta CEP</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <h1>Consulta CEP</h1>
+
+
+<input type="number" name="" id="vemCep">
+<button onclick="consulta()">Buscar</button>
+<hr>
+<span id="retorno">
+
+</span>
+
+    <script>
+
+        function consulta(){
+
+            let getCep = document.getElementById("vemCep")
+            let show = document.getElementById("retorno")
+            let url = `https://viacep.com.br/ws/${getCep.value}/json/`;
+            fetch(url).then(resposta => {
+            return resposta.json()
+        }).then(corpo => {
+            console.clear()
+            console.log(corpo)
+
+            show.innerHTML = 
+            `
+            Logradouro: ${corpo['logradouro']}<br>
+            Bairro: ${corpo['bairro']}<br>
+            Cidade: ${corpo['localidade']} - ${corpo['uf']} <br>
+
+
+            `
+
+        })
+
+        }
+
+
+        
+    </script>
+</body>
+
+</html>

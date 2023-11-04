@@ -9,10 +9,18 @@
     <style>
         #pic,
         #pic1 {
-            width: 300px;
+            width: 200px;
         }
     </style>
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cep.html">Consulta CEP</a></li>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <h1>Pokemon</h1>
@@ -25,6 +33,7 @@
     <br>
     <img id="pic">
     <img id="pic1">
+    
     <br>
     <span id="id">ID</span>
     <br>
@@ -102,8 +111,8 @@
                         console.log(data);
 
                         document.getElementById("descricao").innerHTML =
-                        `ID: ${data['id']}<br>
-                        Nome:${data['name']}<br>
+                        `ID: ${data['id']}
+                        <h3>Nome:${data['name']} </h3>
                         Ordem: ${data['order']}<br>
                         Tamanho: ${data['height']}<br>
                         Experiencia: ${data['base_experience']}<br>
