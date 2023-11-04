@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pic,
+        #pic1 {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pokemon</h1>
+
+
+
+    <input type="number" name="" id="picomon">
+    <br>
+    <span id="descricao">Nome</span>
+    <br>
+    <img id="pic">
+    <img id="pic1">
+    <br>
+    <span id="id">ID</span>
+    <br>
+    <button id="btn">Procurar</button>
+    <button type="reset">Limpar</button>
+
+
+    <script>
+
+        // fetch('http://viacep.com.br/ws/06233020/json/').then(resposta=>{
+        //     return resposta.json()
+        // }).then(corpo=>{
+        //     console.log(corpo)
+        // }) 
+
+        // fetch('https://pokeapi.co/api/v2/pokemon/').then(resposta=>{
+        //     return resposta.json()
+        // }).then(corpo=>{
+        //     console.log(corpo)
+        // }) 
+
+        // fetch('https://pokeapi.co/api/v2/pokemon/').then(resposta=>{
+        //     return resposta.json()
+        // }).then(corpo=>{
+        //     console.log(corpo)
+        // }) 
+
+        // rex = "/pokemon/1/"
+        // fetch('https://pokeapi.co/api/v2/pokemon/').then(resposta=>{
+        //     return resposta.json()
+        // }).then(corpo=>{
+        //     document.getElementById("descricao").innerHTML=corpo.['name']
+        // }) 
+
+        function loadpk() {
+            //imput que vem o número do id
+            let id = document.getElementById("picomon")
+            let url = 'https://pokeapi.co/api/v2/pokemon/';
+
+            // solo = url+id.value+'/'
+            if (id.value.length == 0) {
+
+                solo = url;
+                fetch(solo)
+                    .then((response) => {
+                        return response.json();
+                    })
+
+                    .then((data) => {
+                        console.clear();
+                        console.log(data);
+
+
+
+                        document.getElementById("descricao").innerHTML = data['results']['12']['name']
+                        document.getElementById("id").innerHTML = data['results']['0']['name']
+
+                        let img = ""
+                        document.getElementById("pic").setAttribute('src', img);
+
+                        let img1 = ""
+                        document.getElementById("pic1").setAttribute('src', img1);
+
+                    })
+            } else {
+                solo = url + id.value + '/'
+
+                fetch(solo)
+                    .then((response) => {
+                        return response.json();
+                    })
+
+                    .then((data) => {
+                        console.clear();
+                        console.log(data);
+
+                        document.getElementById("descricao").innerHTML =
+                        `ID: ${data['id']}<br>
+                        Nome:${data['name']}<br>
+                        Ordem: ${data['order']}<br>
+                        Tamanho: ${data['height']}<br>
+                        Experiencia: ${data['base_experience']}<br>
+                        Habilidade 1: ${data['abilities']['0']['ability']['name']}<br>
+                        Habilidade 2: ${data['abilities']['1']['ability']['name']}<br>
+                        ` 
+                     
+
+                        let img = data['sprites']['front_default'];
+                        document.getElementById("pic").setAttribute('src', img);
+
+                        let img1 = data['sprites']['back_shiny'];
+                        document.getElementById("pic1").setAttribute('src', img1);
+                    })
+            }
+
+        }
+        document.getElementById("btn").onclick = loadpk
+    </script>
+</body>
+
+</html>
