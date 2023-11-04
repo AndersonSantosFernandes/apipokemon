@@ -11,6 +11,8 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="cep.html">Consulta CEP</a></li>
+            <li><a href="copy.html">Copia</a></li>
+            <li><a href="copy2.html">Copia 2</a></li>
         </ul>
     </nav>
 </header>
@@ -31,6 +33,9 @@
         function consulta(){
 
             let getCep = document.getElementById("vemCep")
+
+
+
             let show = document.getElementById("retorno")
             let url = `https://viacep.com.br/ws/${getCep.value}/json/`;
             fetch(url).then(resposta => {

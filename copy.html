@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pic,
+        #pic1 {
+            width: 200px;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cep.html">Consulta CEP</a></li>
+            <li><a href="copy.html">Copia</a></li>
+            <li><a href="copy2.html">Copia 2</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <h1>Cópia</h1>
+
+
+
+    <span id="descricao">Nome</span>
+    <br>
+    <img id="pic">
+    <img id="pic1">
+    
+    <br>
+    <span id="id">ID</span>
+    <br>
+    <button id="btn">Procurar</button>
+    <button type="reset">Limpar</button>
+
+
+    <script>
+
+      
+
+        function loadpk() {
+           
+            let url = 'https://pokeapi.co/api/v2/pokemon/';    
+               
+                fetch(url)
+                    .then((response) => {
+                        return response.json();
+                        console.log(response.json())
+                    })
+
+                    .then((data) => {
+                        console.clear();
+                        console.log(data);
+
+                        for(let i = 0; i < data['results'].length; i++){
+                            
+  
+                            // document.getElementById("descricao").innerHTML += i
+                            document.getElementById("descricao").innerHTML += '<br>' + data['results'][i]['name'].toUpperCase()
+                            document.getElementById("id").innerHTML = data['results'].length;
+                        }
+
+                        // document.getElementById("descricao").innerHTML = data['results']
+                        document.getElementById("id").innerHTML = data['results'].length;
+
+                        let img = ""
+                        document.getElementById("pic").setAttribute('src', img);
+
+                        let img1 = ""
+                        document.getElementById("pic1").setAttribute('src', img1);
+
+                    })
+          
+        }
+        document.getElementById("btn").onclick = loadpk
+    </script>
+</body>
+
+</html>

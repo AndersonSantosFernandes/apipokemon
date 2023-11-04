@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pic,
+        #pic1 {
+            width: 200px;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cep.html">Consulta CEP</a></li>
+            <li><a href="copy.html">Copia</a></li>
+            <li><a href="copy2.html">Copia 2</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <h1>Cópia 02</h1>
+
+    <span id="descricao">Nome</span>
+    <br>
+    <img id="pic">
+    <img id="pic1">
+    
+    <br>
+    <span id="id">ID</span>
+    <br>
+    <button id="btn">Procurar</button>
+    <button type="reset">Limpar</button>
+    
+    <script>     
+
+        function loadpk() {
+           
+            // let url = 'https://pokeapi.co/api/v2/pokemon/'; 
+            let url1 = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=100";     
+               
+                fetch(url1)
+                    .then((response) => {
+                        // return response.json();
+                        // console.clear();
+                        console.log(response.json())
+                        document.getElementById("descricao").innerHTML = response['url']
+                    })
+
+                    .then((data) => {
+                    //    console.log(data)
+                    //    console.log(data['next'])
+                    })
+          
+        }
+        document.getElementById("btn").onclick = loadpk
+    </script>
+</body>
+
+</html>
