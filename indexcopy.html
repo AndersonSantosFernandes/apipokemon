@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--Link bootstrap-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.css"
+integrity="sha512-drnvWxqfgcU6sLzAJttJv7LKdjWn0nxWCSbEAtxJ/YYaZMyoNLovG7lPqZRdhgL1gAUfa+V7tbin8y+2llC1cw=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Document</title>
+    <style>
+        #pic,
+        #pic1 {
+            width: 200px;
+        }
+        .row{
+            margin-bottom: 2px solid purple;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cep.html">Consulta CEP</a></li>
+            <li><a href="copy.html">Copia</a></li>
+            <li><a href="copy2.html">Copia 2</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+
+    <div class="container">
+        <h1>Pokemon</h1>
+        <button id="btn">Procurar</button>
+        <div class="row" id="descricao">
+            
+                <!-- <span id="descricao"></span>
+           
+            
+                <div id="pic"></div>     -->
+            
+        </div>
+
+    </div>
+    
+    
+
+   
+  
+    
+  
+    
+    
+
+  
+    
+   
+
+
+    <script>
+
+      //Função que executa a consulta na API
+        function loadpk() {
+            //Div onde são renderizadas as imagens encontradas na API
+            let img = document.getElementById("pic")
+            //Onde são mostradas as informações
+            document.getElementById("descricao").innerHTML =""
+            //url da api
+            let url = 'https://pokeapi.co/api/v2/pokemon/';
+            
+                let count = 10
+                let countMais = count + 10
+
+        
+            for (var i = count; i <= countMais; i++) {
+                //Recebe a url concatenada com o valor incrementado de "i"
+                retorno = url + i+'/';
+                //fetch é quem puxa a url e tras um objeto em json
+                fetch(retorno)
+                    //then tras o que está dentro do objeto e atribui a response
+                    .then((response) => {
+                        return response.json();
+                    })
+                    //them entra mais um nível do objeto e atribui a variável 'data'
+                    .then((data) => {
+                        console.clear();
+                        console.log(data);
+                        
+
+                         
+                            document.getElementById("descricao").innerHTML +=
+                                `  
+                                <div class="col-md-6">                             
+                        <h3>Nome:${data['name'].toUpperCase()} </h3>
+                        ID: ${data['id']} <br>
+                        Ordem: ${data['order']}<br>
+                        Tamanho: ${data['height']}<br>
+                        Experiencia: ${data['base_experience']}<br>
+                        Habilidade 1: ${data['abilities']['0']['ability']['name'].toUpperCase()}<br>
+                        Habilidade 2: ${data['abilities']['1']['ability']['name'].toUpperCase()}<br>
+                        </div>
+                        <div class="col-md-6">
+                        <img src="${data['sprites']['front_default']}" alt="">
+                        </div>
+                        
+                        `
+                        // img.innerHTML += 
+                        // `
+                       
+                        // `
+
+                             
+                            
+
+                          
+                    })
+                }
+            }
+
+        
+        document.getElementById("btn").onclick = loadpk
+    </script>
+</body>
+
+</html>
