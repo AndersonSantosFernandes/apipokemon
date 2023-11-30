@@ -70,7 +70,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
 
       //Função que executa a consulta na API
-        function loadpk() {
+        // function loadpk() {
             //Div onde são renderizadas as imagens encontradas na API
             let img = document.getElementById("pic")
             //Onde são mostradas as informações
@@ -78,8 +78,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             //url da api
             let url = 'https://pokeapi.co/api/v2/pokemon/';
             
-                let count = 0
-                let countMais = count + 10
+                let count = 1000
+                let countMais = count + 100
         
             for (var i = count; i < countMais; i++) {
                 //Recebe a url concatenada com o valor incrementado de "i"
@@ -93,17 +93,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     //them entra mais um nível do objeto e atribui a variável 'data'
                     .then((data) => {
                         console.clear();
-                        console.log(data);
-                        
+                        console.log(data);                        
 
                          
                             document.getElementById("descricao").innerHTML +=
-                                `  
-                               
+                                `                               
 
                         <div class="retorna_pokemon">
                             <h3 class="nomePersonagem"> ${data['name'].toUpperCase()} </h3>
-                            <img src="${data['sprites']['front_default']}" alt="${data['name'].toUpperCase()}"><br>
+                            <img src="${data['sprites']['front_default']}" alt="${data['name'].toUpperCase()}">
+                            <img src="${data['sprites']['back_default']}" alt="${data['name'].toUpperCase()}"><br>
                             <p>ID: ${data['id']} <br>
                             Ordem: ${data['order']}<br>
                             Tamanho: ${data['height']}<br>
@@ -113,18 +112,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </div>
                         
                         `
-                        // img.innerHTML += 
-                        // `
-                       
-                        // `
-
-                             
-                            
-
-                          
+                                          
                     })
                 }
-            }
+            // }
 
         
         document.getElementById("btn").onclick = loadpk
