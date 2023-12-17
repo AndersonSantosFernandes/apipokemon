@@ -44,22 +44,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </style>
 </head>
 <header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cep.html">Consulta CEP</a></li>
-            <li><a href="copy.html">Copia</a></li>
-            <li><a href="copy2.html">Copia 2</a></li>
-        </ul>
-    </nav>
+  
 </header>
 
 <body>
 
     <div class="container">
         <h1>Pokemon</h1>
-        <button id="btn">Procurar</button>
-        <div class="row" id="descricao">
+        
+        <div id="descricao">
             
                
             
@@ -76,16 +69,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             //Onde são mostradas as informações
             document.getElementById("descricao").innerHTML =""
             //url da api
-            let url = 'https://pokeapi.co/api/v2/pokemon/';
-            
-                let count = 800
-                let countMais = count + 200
-        
-            for (var i = count; i < countMais; i++) {
-                //Recebe a url concatenada com o valor incrementado de "i"
-                retorno = url + i+'/';
+            // let url = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=40"';
+            // let url = 'https://pokeapi.co/api/v2/pokemon/';
+             let url = 'https://pokeapi.co/api/v2/pokemon/';
+       
+                
                 //fetch é quem puxa a url e tras um objeto em json
-                fetch(retorno)
+                fetch(url)
                     //then tras o que está dentro do objeto e atribui a response
                     .then((response) => {
                         return response.json();
@@ -93,32 +83,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     //them entra mais um nível do objeto e atribui a variável 'data'
                     .then((data) => {
                         console.clear();
-                        console.log(data);                      
-                         
-                            document.getElementById("descricao").innerHTML +=
-                                `                               
+                        console.log(data); 
 
-                        <div class="retorna_pokemon">
-                            <h3 class="nomePersonagem"> ${data['name'].toUpperCase()} </h3>
-                            <img src="${data['sprites']['front_default']}" alt="${data['name'].toUpperCase()}">
-                            <img src="${data['sprites']['back_default']}" alt="${data['name'].toUpperCase()}"><br>
-                            <p>ID: ${data['id']} <br>
-                            Ordem: ${data['order']}<br>
-                            Tamanho: ${data['height']}<br>
-                            Experiencia: ${data['base_experience']}<br>
-                            Habilidade: ${data['abilities']['0']['ability']['name'].toUpperCase()}<br>
-                            Habilidade 2: ${data['abilities']['1']['ability']['name'].toUpperCase()}</p>
-                        </div>
-                        
-                        `
-                                          
-                    })
-                }
-            // }
-
-        
-        document.getElementById("btn").onclick = loadpk
-    </script>
-</body>
-
-</html>
+                    }) 
+                    </script>     
+                    </body>       
+                    </html>
